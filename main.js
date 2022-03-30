@@ -1,3 +1,4 @@
+
 let  pick = ["rock", "paper", "scissors"]
 
 let computerPlay = pick[Math.floor(Math.random() * pick.length)];
@@ -23,49 +24,31 @@ function playRound() {
     }
 }
 
-//console.log(playRound())
+let turnout = playRound()
 
-//turn score of 1 round into variable
-let roundScore = playRound()
+console.log(turnout)
 
-console.log(roundScore)
-
-//write score of one round  
-function score() {
-    if (roundScore === "remis nwm jak jest po angielsku" || roundScore === "hoe type a valid word pls") {
-        return undefined;
-    } else if (roundScore ==="u loose") {
-        return 0; 
-    } else {
+function scoreOfRound() {
+     if (turnout === "u loose") {
+        return 0;
+     } else if (turnout === "u win") {
         return 1;
-    }
-    
-}
-console.log(score())
-
-score()
-let counter = score()
-
-
-
-
-//play rounds and count win if >2
-
-function game() {
-    for (let counter = 0; counter < 5; countScore++) {
-        if (counter === undefined) {
-            continue; 
-        } else {
-            return("whore")
-        }
-            
-    
+     } else {
+        return undefined;
      }
-}
+ }
+
+let score = scoreOfRound()
+
+console.log(score)
 
 
-game()
-console.log(game())
-
-//return "u loose whole round sucks 4u lmao"
-//return "u win whole round good job sport"
+for (let i = 0; i < 5; i++) {
+            if (score === 0) {
+                console.log(0);
+            } else if (score === 1) {
+                console.log(1);
+            } else {
+                continue;
+            }
+        }
