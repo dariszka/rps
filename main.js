@@ -1,19 +1,37 @@
+function game() {
+    let gameScore = 0 
+    for (let i = 0; i < 5;) {
+        let playersPicks = getPlayersPicks();
+        console.log(playersPicks);
 
-let  pick = ["rock", "paper", "scissors"]
+        let result = playRound(playersPicks[0], playersPicks[1]);
+        console.log(result);
 
-let computerPlay = pick[Math.floor(Math.random() * pick.length)];
+        let convertedResult = convertRoundResult(result);
+        console.log(convertedResult);
+
+        if (convertedResult == "invalidResult") {
+            continue
+        } else {
+            gameScore += convertedResult;
+            i++
+        }
+    }
+};
+
+game()
 
 
+function getPlayersPicks() {
+    let possibleComputerPicks = ["rock", "paper", "scissors"]
+    let computerSelection = possibleComputerPicks[Math.floor(Math.random() * possibleComputerPicks.length)];
+    let playerSelection = prompt("?").toLowerCase();
+    return [computerSelection, playerSelection]
+}
 
-let computerSelection = computerPlay
-let playerSelection = prompt("?").toLowerCase();
-
-console.log(playerSelection);
-console.log(computerSelection);
-
-
-function playRound() {
+function playRound(computerSelection, playerSelection) {
     if (playerSelection === computerSelection)  {
+        console.log('remis')
         return "remis nwm jak jest po angielsku"
     } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
         return "u loose"
@@ -24,31 +42,12 @@ function playRound() {
     }
 }
 
-let turnout = playRound()
-
-console.log(turnout)
-
-function scoreOfRound() {
-     if (turnout === "u loose") {
+function convertRoundResult(result) {
+     if (result === "u loose" || result === "remis nwm jak jest po angielsku") {
         return 0;
-     } else if (turnout === "u win") {
+     } else if (result === "u win") {
         return 1;
      } else {
-        return undefined;
+        return "invalidResult";
      }
  }
-
-let score = scoreOfRound()
-
-console.log(score)
-
-
-for (let i = 0; i < 5; i++) {
-            if (score === 0) {
-                console.log(0);
-            } else if (score === 1) {
-                console.log(1);
-            } else {
-                continue;
-            }
-        }
