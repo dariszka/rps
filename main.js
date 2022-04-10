@@ -17,6 +17,8 @@ function game() {
             i++
         }
     }
+    let finalScore = tellGameScore()
+    console.log(finalScore)
 };
 
 game()
@@ -51,3 +53,12 @@ function convertRoundResult(result) {
         return "invalidResult";
      }
  }
+
+
+function tellGameScore(gameScore) {
+    if (gameScore > 2) {
+        return "woo u won the whole game!!"
+    } else {
+        return "lmao try again looser"
+    }
+}
