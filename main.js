@@ -51,3 +51,4 @@ function convertRoundResult(result) {
         return "invalidResult";
      }
  }
+ 
