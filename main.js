@@ -1,6 +1,30 @@
-function game() {
-    let gameScore = 0 
-    for (let i = 0; i < 5;) {
+// function game() {
+//     let gameScore = 0 
+//     for (let i = 0; i < 5;) {
+//         let playersPicks = getPlayersPicks();
+//         console.log(playersPicks);
+
+//         let result = playRound(playersPicks[0], playersPicks[1]);
+//         console.log(result);
+
+//         let convertedResult = convertRoundResult(result);
+//         console.log(convertedResult);
+
+//         if (convertedResult == "invalidResult") {
+//             continue
+//         } else {
+//             gameScore += convertedResult;
+//             i++
+//         }
+//     }
+// };
+
+//game()
+
+
+//function game() {
+    // let gameScore = 0 
+    // for (let i = 0; i < 5;) {
         let playersPicks = getPlayersPicks();
         console.log(playersPicks);
 
@@ -10,22 +34,22 @@ function game() {
         let convertedResult = convertRoundResult(result);
         console.log(convertedResult);
 
-        if (convertedResult == "invalidResult") {
-            continue
-        } else {
-            gameScore += convertedResult;
-            i++
-        }
-    }
-};
+    //     if (convertedResult == "invalidResult") {
+    //         continue
+    //     } else {
+    //         gameScore += convertedResult;
+    //         i++
+    //     }
+    // }
+//};
 
-game()
+//game()
 
 
 function getPlayersPicks() {
     let possibleComputerPicks = ["rock", "paper", "scissors"]
     let computerSelection = possibleComputerPicks[Math.floor(Math.random() * possibleComputerPicks.length)];
-    let playerSelection = prompt("?").toLowerCase();
+    let playerSelection = window.addEventListener('click', getPlayerSelection);
     return [computerSelection, playerSelection]
 }
 
@@ -51,4 +75,29 @@ function convertRoundResult(result) {
         return "invalidResult";
      }
  }
- 
+
+
+function getPlayerSelection(e) {
+    const rock = document.querySelector(`button.rock`)
+    const paper = document.querySelector(`button.pap`)
+    const scissors = document.querySelector(`button.sc`)
+    
+    if (rock) {
+       return "rock"  
+    } else if (paper) {
+        return "paper"
+    } else if (scissors) {
+        return "scissors"
+    }
+    
+}
+
+//window.addEventListener('click', getPlayerSelection)
+
+
+//const possiblePlayerPicks = document.querySelectorAll('button')
+
+
+
+
+
