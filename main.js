@@ -47,15 +47,14 @@
 
 
 function getPlayersPicks() {
+    let playerSelection = document.addEventListener('click', getPlayerSelection);
     let possibleComputerPicks = ["rock", "paper", "scissors"]
     let computerSelection = possibleComputerPicks[Math.floor(Math.random() * possibleComputerPicks.length)];
-    let playerSelection = window.addEventListener('click', getPlayerSelection);
     return [computerSelection, playerSelection]
 }
 
 function playRound(computerSelection, playerSelection) {
     if (playerSelection === computerSelection)  {
-        console.log('remis')
         return "remis nwm jak jest po angielsku"
     } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
         return "u loose"
@@ -77,25 +76,18 @@ function convertRoundResult(result) {
  }
 
 
-function getPlayerSelection(e) {
-    const rock = document.querySelector(`button.rock`)
-    const paper = document.querySelector(`button.pap`)
-    const scissors = document.querySelector(`button.sc`)
-    
-    if (rock) {
-       return "rock"  
-    } else if (paper) {
-        return "paper"
-    } else if (scissors) {
-        return "scissors"
-    }
-    
-}
 
 //window.addEventListener('click', getPlayerSelection)
 
 
-//const possiblePlayerPicks = document.querySelectorAll('button')
+
+
+function getPlayerSelection(element, x) {
+    return x
+}
+
+console.log(getPlayerSelection())
+
 
 
 
