@@ -42,13 +42,7 @@ function game() {
         roundCount++
         playerSelection = ''
     }
-<<<<<<< HEAD
-    let finalScore = tellGameScore()
-    console.log(finalScore)
-};
-=======
 }
->>>>>>> ui
 
 restartButton.onclick = ()=> {
     result = 'invalid'
@@ -90,29 +84,9 @@ function playRound(computerSelection, playerSelection) {
 }
 
 function convertRoundResult(result) {
-<<<<<<< HEAD
-     if (result === "u loose" || result === "remis nwm jak jest po angielsku") {
-        return 0;
-     } else if (result === "u win") {
-        return 1;
-     } else {
-        return "invalidResult";
-     }
- }
-
-
-function tellGameScore(gameScore) {
-    if (gameScore > 2) {
-        return "woo u won the whole game!!"
-    } else {
-        return "lmao try again looser"
-    }
-}
-=======
     if (result === "u win :)"){
     convertedResult = 1;
     } else {
     convertedResult =  0;
     } 
 }
->>>>>>> ui
