@@ -1,50 +1,96 @@
+const buttons = document.querySelector('.buttons')
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+const scoreDisplay = document.querySelector('.score')
+const restartButton = document.querySelector('.restartButton')
+
+let playerSelection = ''
+let computerSelection
+let result
+let convertedResult = 0
+let gameScore = 0 
+let roundCount = 0
+let isFirstGame = true
+let restart = false
+
+buttons.addEventListener('click', game)
+
+getPlayerSelection()
 function game() {
-    let gameScore = 0 
-    for (let i = 0; i < 5;) {
-        let playersPicks = getPlayersPicks();
-        console.log(playersPicks);
-
-        let result = playRound(playersPicks[0], playersPicks[1]);
-        console.log(result);
-
-        let convertedResult = convertRoundResult(result);
-        console.log(convertedResult);
-
-        if (convertedResult == "invalidResult") {
-            continue
-        } else {
-            gameScore += convertedResult;
-            i++
+    if (isFirstGame || restart) {
+        getComputerSelection()
+        result = playRound(computerSelection, playerSelection)
+        convertRoundResult(result);
+        gameScore += convertedResult;
+        
+        if (result!='invalid'){
+            scoreDisplay.innerHTML = `computer played ${computerSelection}, so <br>${result} 🙈`
         }
+        
+        if (roundCount === 4) {
+            if (gameScore > 2) {
+                scoreDisplay.innerHTML = `lessgoooo u won the game, <br> scored ${gameScore}/5`
+            } else {
+                scoreDisplay.innerHTML = 'boo u lost the game, try again '
+            }
+        
+            restartButton.classList.remove('hide')  
+            isFirstGame = false
+            restart = false          
+        }
+        roundCount++
+        playerSelection = ''
     }
+<<<<<<< HEAD
     let finalScore = tellGameScore()
     console.log(finalScore)
 };
+=======
+}
+>>>>>>> ui
 
-game()
+restartButton.onclick = ()=> {
+    result = 'invalid'
+    restart = true
+    roundCount = 0
+    gameScore = 0
+    restartButton.classList.add('hide')
+    scoreDisplay.innerHTML = ''
+}
 
+function getPlayerSelection() {
+    rock.onclick = function () {
+        playerSelection = "rock"
+    }
+    paper.onclick = function () {
+        playerSelection = "paper"
+    }
+    scissors.onclick =  function () {
+        playerSelection = "scissors"
+    }
+}
 
-function getPlayersPicks() {
+function getComputerSelection() {
     let possibleComputerPicks = ["rock", "paper", "scissors"]
-    let computerSelection = possibleComputerPicks[Math.floor(Math.random() * possibleComputerPicks.length)];
-    let playerSelection = prompt("?").toLowerCase();
-    return [computerSelection, playerSelection]
+    computerSelection = possibleComputerPicks[Math.floor(Math.random() * possibleComputerPicks.length)];
 }
 
 function playRound(computerSelection, playerSelection) {
     if (playerSelection === computerSelection)  {
-        console.log('remis')
-        return "remis nwm jak jest po angielsku"
+        return "it's a draw like french girlie"
     } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
-        return "u loose"
+        return "u loose :("
     } else if ((playerSelection === "paper" && computerSelection === "rock") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "rock" && computerSelection === "scissors")) {
-        return "u win"
+        return "u win :)"
     } else {
-        return "hoe type a valid word pls"
+        roundCount--
+        return 'invalid';
     }
 }
 
 function convertRoundResult(result) {
+<<<<<<< HEAD
      if (result === "u loose" || result === "remis nwm jak jest po angielsku") {
         return 0;
      } else if (result === "u win") {
@@ -62,3 +108,11 @@ function tellGameScore(gameScore) {
         return "lmao try again looser"
     }
 }
+=======
+    if (result === "u win :)"){
+    convertedResult = 1;
+    } else {
+    convertedResult =  0;
+    } 
+}
+>>>>>>> ui
