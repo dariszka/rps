@@ -5,15 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Rock Paper Scissors</title>
-    <link rel="icon" href="ic.png">    
+    <link rel="icon" href="ic.png">
+    <link rel="stylesheet" href="loader.css">    
 </head>
 <body>
     <div class="buttons"> 
-        <button class="btn rock"></button>
-        <button class="btn paper"></button>
-        <button class="btn scissors"></button>
+        <button class="btn rock" alt="rock"></button>
+        <button class="btn paper" alt="paper"></button>
+        <button class="btn scissors" alt="scissors"></button>
     </div>
-    <div class="score"></div>
+    <div class="box">
+        <div class="lds-ellipsis hide" ><div></div><div></div><div></div><div></div></div>
+        <div class="score"></div>
+    </div>
     <button class="restartButton hide">restart game b</button>
     <a href="https://www.instagram.com/blugarian/" id="footer">@BLUGARIAN</a>
     
@@ -29,8 +33,7 @@
             display: flex;
             margin: 0;
             flex-direction: column;
-            justify-content: center;
-            justify-items: center;
+            flex-shrink: 0;
             gap: 60px;
             font-family: 'Ubuntu', 'Times New Roman', Times, serif;
             background-color: rgb(251, 211, 239);
@@ -42,7 +45,7 @@
             align-items: center;
             justify-content: center;
             gap: 7em;
-            margin-top: 12%;
+            margin-top: auto;
         }
 
         .btn {
@@ -67,9 +70,10 @@
             background-image: url("scissors.jpg");
         }
 
-        .score {
+        .box {
             text-align: center;
             font-size: 35px;
+            align-self: center ;
         }
 
         .restartButton {

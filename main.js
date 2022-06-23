@@ -4,6 +4,7 @@ const paper = document.querySelector('.paper')
 const scissors = document.querySelector('.scissors')
 const scoreDisplay = document.querySelector('.score')
 const restartButton = document.querySelector('.restartButton')
+const loader = document.querySelector('.lds-ellipsis')
 
 let playerSelection = ''
 let computerSelection
@@ -23,22 +24,34 @@ function game() {
         result = playRound(computerSelection, playerSelection)
         convertRoundResult(result);
         gameScore += convertedResult;
+
+        scoreDisplay.classList.add('hide')
+        loader.classList.remove('hide')
+        setTimeout(function () {
+            loader.classList.add('hide')
+            scoreDisplay.classList.remove('hide')
+        }, 1500)
+               
         
-        if (result!='invalid'){
-            scoreDisplay.innerHTML = `computer played ${computerSelection}, so <br>${result} 🙈`
-        }
-        
-        if (roundCount === 4) {
+        if (roundCount < 4) {
+            if (result!='invalid'){
+                let roundResultText = `computer played ${computerSelection}, so <br>${result} 🙈`
+                scoreDisplay.innerHTML = roundResultText
+            }
+        } else {
             if (gameScore > 2) {
                 scoreDisplay.innerHTML = `lessgoooo u won the game, <br> scored ${gameScore}/5`
             } else {
                 scoreDisplay.innerHTML = 'boo u lost the game, try again '
             }
-        
-            restartButton.classList.remove('hide')  
+
+            setTimeout(function() {
+                restartButton.classList.remove('hide')  
+            }, 1500)      
+            
             isFirstGame = false
-            restart = false          
-        }
+            restart = false 
+        } 
         roundCount++
         playerSelection = ''
     }
@@ -54,15 +67,15 @@ restartButton.onclick = ()=> {
 }
 
 function getPlayerSelection() {
-    rock.onclick = function () {
-        playerSelection = "rock"
-    }
-    paper.onclick = function () {
-        playerSelection = "paper"
-    }
-    scissors.onclick =  function () {
-        playerSelection = "scissors"
-    }
+        rock.onclick = function () {
+            playerSelection = "rock"
+        }
+        paper.onclick = function () {
+            playerSelection = "paper"
+        }
+        scissors.onclick =  function () {
+            playerSelection = "scissors"
+        }
 }
 
 function getComputerSelection() {
