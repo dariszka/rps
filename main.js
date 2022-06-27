@@ -14,43 +14,48 @@ let gameScore = 0
 let roundCount = 0
 let isFirstGame = true
 let restart = false
+//so player won't be able to play new round while waiting for round results
+let loading = false
 
 buttons.addEventListener('click', game)
 
 getPlayerSelection()
 function game() {
-    if (isFirstGame || restart) {
-        getComputerSelection()
-        result = playRound(computerSelection, playerSelection)
-        convertRoundResult(result);
-        gameScore += convertedResult;
-
-        scoreDisplay.classList.add('hide')
-        loader.classList.remove('hide')
-        setTimeout(function () {
-            loader.classList.add('hide')
-            scoreDisplay.classList.remove('hide')
-        }, 1500)
+    if (!loading) {
+        if (isFirstGame || restart) {
+            getComputerSelection()
+            result = playRound(computerSelection, playerSelection)
+            convertRoundResult(result);
+            gameScore += convertedResult;
+            
+            loading = true 
+            scoreDisplay.classList.add('hide')
+            loader.classList.remove('hide')
+            setTimeout(function () {
+                loader.classList.add('hide')
+                scoreDisplay.classList.remove('hide')
+                loading = false
+            }, 1500)
+        }
                
-        
         if (roundCount < 4) {
             if (result!='invalid'){
                 let roundResultText = `computer played ${computerSelection}, so <br>${result} 🙈`
                 scoreDisplay.innerHTML = roundResultText
             }
         } else {
+            
             if (gameScore > 2) {
                 scoreDisplay.innerHTML = `lessgoooo u won the game, <br> scored ${gameScore}/5`
             } else {
                 scoreDisplay.innerHTML = 'boo u lost the game, try again '
             }
 
+            isFirstGame = false
+            restart = false 
             setTimeout(function() {
                 restartButton.classList.remove('hide')  
             }, 1500)      
-            
-            isFirstGame = false
-            restart = false 
         } 
         roundCount++
         playerSelection = ''
